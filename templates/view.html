@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <title>GRAPH SQL</title>
+    <link rel = "stylesheet" href = "{{url_for('static' , filename = 'css/style.css')}}">
+</head>
+
+<body background="white">
+
+{% with messages = get_flashed_messages() %}  
+{% if messages %}  
+          {% for message in messages %} 
+          <script>alert('{{ message }}');</script>  
+          {% endfor %}  
+{% endif %}  
+{% endwith %}  
+
+
+<center><h2 id = "main_heading"><u>GRAPH SQL</u></h2></center>
+<div id = "heading">
+    <a href = "home.html" id = "home">HOME</a>
+    <a href = "create.html">CREATE</a>
+    <a href = "insert.html">INSERT</a>
+    <a href = "select.html">SELECT</a>
+    <a href =  "view.html" >VIEW</a>
+
+</div>
+
+<br>
+<center>
+<h2></h2>
+
+</center>
+
+
+<br>
+
+<svg width = 100% height = 150%>
+    <defs>
+        <marker id="arrowhead" markerWidth="5" markerHeight="3.5" 
+        refX="0" refY="1.75" orient="auto">
+          <polygon points="0 0, 5 1.75, 0 3.5" />
+        </marker>
+      </defs>
+    {{svg_code}}
+</svg>
+    <br>
+    <br>
+</center>
+<br>
+<br>
+</body>
+</html>

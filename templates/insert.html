@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>GRAPH SQL</title>
+    <link rel = "stylesheet" href = "{{url_for('static' , filename = 'css/style.css')}}">
+</head>
+
+<body background="white">
+
+{% with messages = get_flashed_messages() %}  
+{% if messages %}  
+          {% for message in messages %} 
+          <script>alert('{{ message }}');</script>  
+          {% endfor %}  
+{% endif %}  
+{% endwith %}  
+
+
+<center><h2 id = "main_heading"><u>GRAPH SQL</u></h2></center>
+<div id = "heading">
+    <a href = "home.html" id = "home">HOME</a>
+    <a href = "create.html">CREATE</a>
+    <a href = "insert.html">INSERT</a>
+    <a href = "select.html">SELECT</a>
+    <a href =  "view.html" >VIEW</a>
+
+</div>
+
+<br>
+<center>
+    <center>
+    <h2>Insert a relation here !</h2>
+    <center>
+        <form method = "POST" action = "/insert.html">
+            <center><h2>New Relation : </h2></center>
+            <br>
+            <p>ENTER NAME 1: </p>
+            <p>
+            <select name = "name1">
+                {{msg}}
+            </select>
+            </p>
+            <br>
+            <p>ENTER NAME 2: </p>
+            <p>
+                <select name = "name2">
+                    {{msg}}
+                </select>
+            </p>
+            <br>
+            <p>ENTER RELATION: </p> (Name1 --- > relation ---> Name2)
+            <p>
+            <input type="text" name = "relation" style="width:20em;">
+            </p>
+            <br>
+            <br>
+            <center>
+                <button type = "submit" class = "submit_button" style = "font-size:15">ADD RELATION</button>
+            </center>
+        </form>
+    </center>
+    
+    </center>
+    
+
+</center>
+
+
+<br>
+    <br>
+    <br>
+</center>
+<br>
+<br>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title>GRAPH SQL</title>
+    <link rel = "stylesheet" href = "{{url_for('static' , filename = 'css/style.css')}}">
+</head>
+
+<body background="white">
+
+{% with messages = get_flashed_messages() %}  
+{% if messages %}  
+          {% for message in messages %} 
+          <script>alert('{{ message }}');</script>  
+          {% endfor %}  
+{% endif %}  
+{% endwith %}  
+
+
+<center><h2 id = "main_heading"><u>GRAPH SQL</u></h2></center>
+<div id = "heading">
+    <a href = "home.html" id = "home">HOME</a>
+    <a href = "create.html">CREATE</a>
+    <a href = "insert.html">INSERT</a>
+    <a href = "select.html">SELECT</a>
+    <a href =  "view.html" >VIEW</a>
+
+</div>
+
+<br>
+<center>
+<h2>Create a new member here !</h2>
+<center>
+    <form method = "POST" action = "/create.html">
+        <center><h2>New Node : </h2></center>
+        <br>
+        <p>ENTER NAME: </p>
+        <p>
+        <input type="text" name = "name" style="width:30em;">
+        </p>
+        <br>
+        <p>ENTER AGE: </p>
+        <p>
+        <input type="number" name = "age" style="width:5em;">
+        </p>
+        <br>
+        <p>ENTER GENDER :
+        <select name = "gender">
+            <option>M</option>
+            <option>F</option>
+        </select>
+        </p>
+        <br>
+        <p>ENTER HOBBIES: </p>
+        <p>
+        <textarea type="text" name = "hobbies" style="width:30em;height:5em;"></textarea>
+        </p>
+        <br>
+        <center>
+            <button type = "submit" class = "submit_button" style = "font-size:15">ADD PERSON</button>
+        </center>
+    </form>
+</center>
+
+</center>
+
+
+<br>
+
+    <br>
+    <br>
+</center>
+<br>
+<br>
+</body>
+</html>

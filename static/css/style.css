@@ -1,0 +1,114 @@
+body
+{
+    margin : 0px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),url("/static/images/img_1.jpg");
+}
+#main_heading
+{
+    background-color: aquamarine;
+    padding: 10px;
+    font-family: 'Times New Roman';
+}
+#heading
+{
+    background-color: beige;
+    padding: 10px;
+}
+#heading a{
+    display: inline;
+    overflow: hidden;
+    padding: 10px;
+    background-color: aqua;
+	text-decoration: none;
+}
+#heading #home
+{
+    background-color: orange;
+}
+h2{
+    padding:20px;
+    margin:0px;
+}
+#linktree
+{
+    background-color: burlywood;
+    padding:20px;
+    margin:0px;
+}
+
+#welcome
+{
+    background-color: burlywood;
+    padding:20px;
+    margin:0px;    
+}
+canvas
+{
+    background-color: white;
+}
+li
+{
+    text-align: left;
+}
+
+img{
+    width : 70%;
+    opacity: 70%;
+}
+
+#about
+{
+    background-color: lightblue;
+    padding: 10px;    
+}
+#para
+{
+    background-color: beige;
+    padding: 10px;  
+    margin : 0px;
+}
+
+ul{
+    background-color: beige;
+    border-radius: 50px;
+}
+
+#click
+{
+    background-color: azure;
+    border-radius: 50px;
+    font-size: 20;
+    padding: 10px;
+}
+
+.submit_button
+{
+    background-color: orange;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 20;
+}
+
+form
+{
+    width:fit-content;
+    height: fit-content;
+    padding: 15px;
+    border: 5px solid black;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: azure;
+}
+.form_element{
+    margin: 10px;
+    text-align: left;
+}
+.form_element select{
+    float:right;
+}
+.form_element input{
+    float:right;
+}
