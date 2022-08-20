@@ -37,6 +37,13 @@
 
 <svg width = 100% height = 150%>
     <defs>
+        <filter x="0" y="0" width="1" height="1" id="solid">
+        <feFlood flood-color="yellow" result="bg" />
+        <feMerge>
+          <feMergeNode in="bg"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+        </filter>
         <marker id="arrowhead" markerWidth="5" markerHeight="3.5" 
         refX="0" refY="1.75" orient="auto">
           <polygon points="0 0, 5 1.75, 0 3.5" />

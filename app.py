@@ -219,7 +219,7 @@ def draw_line(a , b):
     return s
     
 def draw_text(pt , ang , txt):
-    s = ' <text transform="translate({}, {}) rotate({})"  fill="red" >{}</text>'.format(pt[0] , pt[1] , ang , txt)
+    s = ' <text filter="url(#solid)" transform="translate({}, {}) rotate({})"  fill="red" >{}</text>'.format(pt[0] , pt[1] , ang , txt)
     return s
     
 @app.route("/select.html" , methods = ["GET" , "POST"])
@@ -230,9 +230,9 @@ def select():
     
     if request.method == "POST":
         name = request.form.get("name")
-        
-        origin = [scr_width/2,scr_height/2]
-        other_pt = [scr_width*0.70,scr_height/2]
+            
+        origin = [scr_width/2,scr_height*0.70]
+        other_pt = [scr_width*0.75,scr_height*0.70]
         
         
         query = "select * from link_connection where node1 like '{}' or node2 like '{}';".format(name , name)
@@ -254,38 +254,40 @@ def select():
         n = len(other_names)
         ang = 360 / n
         count = 1
-        for other_node in other_names:
-            color = "pink"
-            if gender_info[other_node] == "M":
-                color = "blue"
+        
+        coordinates = {name:origin}
+        
+        for nodes in other_names:
             x,y = rotate(origin , other_pt , ang*count*pi/180 )
-            point = [x,y]
-            if((name , other_node , relation[(name , other_node)]) in l):
-                svg_code += draw_line(origin , [
-                x - (x - origin[0])*(len(other_node)/20) ,
-                y - (y - origin[1])*(len(other_node)/20) ])
-                svg_code += draw_node(other_node ,x,y,color)
-                svg_code += draw_text(mid_pt(origin , [x,y]) ,  angle(origin , point) , relation[(name , other_node)])
-                
-            else:
-                origin , point = point , origin
-                x,y = point
-                
-                svg_code += draw_line(origin , [
-                x - (x - origin[0])*(len(name)/20) ,
-                y - (y - origin[1])*(len(name)/20) ])
-                
-                svg_code += draw_text(mid_pt(origin , [x,y]) ,  angle(origin , point) , relation[(name , other_node)])    
-                origin , point = point , origin
-                x,y = point
-                
-                svg_code += draw_node(other_node ,x,y,color)
+            coordinates[nodes] = (x , y)
             count += 1
+            
+        
+        for (a,b,c) in l:
+            origin = coordinates[a]
+            point = coordinates[b]
+            x,y = point
+            relation = c
+            extra = 6*len(b) + 40
+            if(origin[0] >= point[0]):
+                svg_code += draw_line(origin ,get_point(origin , distance(origin , point)-extra, abs(180+angle(origin , point))))
+            else:
+                svg_code += draw_line(origin ,get_point(origin , distance(origin , point)-extra , angle(origin , point)))
+            
+            svg_code += draw_text(mid_pt(origin , point ) , angle(origin , point) , relation)
+        
             
         color = "pink"
         if gender_info[name] == "M":
             color = "blue"
-        svg_code += draw_node(name ,origin[0] , origin[1] ,color)
+        svg_code += draw_node(name ,coordinates[name][0] , coordinates[name][1] ,color)
+        
+            
+        for nodes in other_names:
+            color = "pink"
+            if gender_info[nodes] == "M":
+                color = "blue"
+            svg_code += draw_node(nodes ,coordinates[nodes][0] , coordinates[nodes][1] ,color)
         
         
     code = get_names()
@@ -320,8 +322,8 @@ def view():
     svg_code = ''
     gender_info = get_gender()
     
-    origin = [scr_width/2,scr_height/2]
-    other_pt = [scr_width*0.70,scr_height/2]
+    origin = [scr_width/2,scr_height*0.70]
+    other_pt = [scr_width*0.75,scr_height*0.70]
     query = "select * from link_connection;"
     cur.execute(query)
     l = cur.fetchall()
